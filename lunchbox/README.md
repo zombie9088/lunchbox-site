@@ -91,4 +91,4 @@ Items:
 Total: ₹320
 ```
 
-Orders go to: **9966025825**
+Orders go to: **Number**

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lunchbox — Corporate Meals</title>
+  <meta name="description" content="A specially curated lunch menu for corporate folks. Order via WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-icon">🍱</div>
+  <div class="hero-title">The Lunchbox</div>
+  <div class="hero-sub">A specially curated menu for corporate folks</div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+
+  <!-- THALI SECTION -->
+  <div class="section-title">Thali</div>
+  <div class="item-grid">
+
+    <div class="item-card">
+      <img class="item-img" src="images/vegetarian-thali.jpg" alt="Vegetarian Thali"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍛</div>
+      <div class="item-body">
+        <div class="item-name">Vegetarian Thali</div>
+        <div class="item-desc">Veg curry of the day, dal, bhaji, steamed rice & salad</div>
+        <div class="item-footer">
+          <div class="item-price">₹102</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('vthali',-1)">−</button>
+            <span class="qty-val" id="qty-vthali">0</span>
+            <button class="qty-btn" onclick="changeQty('vthali',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/chicken-thali-mini.jpg" alt="Chicken Thali Mini"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍗</div>
+      <div class="item-body">
+        <div class="item-name">Chicken Thali (Mini)</div>
+        <div class="item-desc">Chicken curry of the day & steamed rice</div>
+        <div class="item-footer">
+          <div class="item-price">₹95</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('cthali_mini',-1)">−</button>
+            <span class="qty-val" id="qty-cthali_mini">0</span>
+            <button class="qty-btn" onclick="changeQty('cthali_mini',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/chicken-thali.jpg" alt="Chicken Thali"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍗</div>
+      <div class="item-body">
+        <div class="item-name">Chicken Thali</div>
+        <div class="item-desc">Chicken curry, dal, steamed rice & salad</div>
+        <div class="item-footer">
+          <div class="item-price">₹116</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('cthali',-1)">−</button>
+            <span class="qty-val" id="qty-cthali">0</span>
+            <button class="qty-btn" onclick="changeQty('cthali',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/egg-thali.jpg" alt="Egg Thali"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🥚</div>
+      <div class="item-body">
+        <div class="item-name">Egg Thali</div>
+        <div class="item-desc">2 eggs in curry, dal, bhaji, steamed rice & salad</div>
+        <div class="item-footer">
+          <div class="item-price">₹84</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('ethali',-1)">−</button>
+            <span class="qty-val" id="qty-ethali">0</span>
+            <button class="qty-btn" onclick="changeQty('ethali',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/special-thali.jpg" alt="Special Thali"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">✨</div>
+      <div class="item-body">
+        <div class="item-name">Special Thali</div>
+        <div class="item-desc">Our signature Aloor Dum with 4 luchi</div>
+        <div class="item-footer">
+          <div class="item-price">₹75</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('sthali',-1)">−</button>
+            <span class="qty-val" id="qty-sthali">0</span>
+            <button class="qty-btn" onclick="changeQty('sthali',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /thali grid -->
+
+  <!-- MAIN COURSE SECTION -->
+  <div class="section-title">Main Course</div>
+  <div class="item-grid">
+
+    <div class="item-card">
+      <img class="item-img" src="images/aloor-dum.jpg" alt="Aloor Dum"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🥔</div>
+      <div class="item-body">
+        <div class="item-name">Aloor Dum</div>
+        <div class="item-footer">
+          <div class="item-price">₹60</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('aloor',-1)">−</button>
+            <span class="qty-val" id="qty-aloor">0</span>
+            <button class="qty-btn" onclick="changeQty('aloor',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/egg-tadka.jpg" alt="Egg Tadka"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🥚</div>
+      <div class="item-body">
+        <div class="item-name">Egg Tadka</div>
+        <div class="item-footer">
+          <div class="item-price">₹55</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('etadka',-1)">−</button>
+            <span class="qty-val" id="qty-etadka">0</span>
+            <button class="qty-btn" onclick="changeQty('etadka',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/chicken-tadka.jpg" alt="Chicken Tadka"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍗</div>
+      <div class="item-body">
+        <div class="item-name">Chicken Tadka</div>
+        <div class="item-footer">
+          <div class="item-price">₹75</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('ctadka',-1)">−</button>
+            <span class="qty-val" id="qty-ctadka">0</span>
+            <button class="qty-btn" onclick="changeQty('ctadka',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/shahi-paneer.jpg" alt="Shahi Paneer"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🧀</div>
+      <div class="item-body">
+        <div class="item-name">Shahi Paneer</div>
+        <div class="item-footer">
+          <div class="item-price">₹78</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('paneer',-1)">−</button>
+            <span class="qty-val" id="qty-paneer">0</span>
+            <button class="qty-btn" onclick="changeQty('paneer',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/egg-bhuna.jpg" alt="Egg Bhuna"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🥚</div>
+      <div class="item-body">
+        <div class="item-name">Egg Bhuna</div>
+        <div class="item-footer">
+          <div class="item-price">₹65</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('ebhuna',-1)">−</button>
+            <span class="qty-val" id="qty-ebhuna">0</span>
+            <button class="qty-btn" onclick="changeQty('ebhuna',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/chicken-kosha.jpg" alt="Chicken Kosha"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍗</div>
+      <div class="item-body">
+        <div class="item-name">Chicken Kosha</div>
+        <div class="item-footer">
+          <div class="item-price">₹90</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('ckosha',-1)">−</button>
+            <span class="qty-val" id="qty-ckosha">0</span>
+            <button class="qty-btn" onclick="changeQty('ckosha',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main grid -->
+
+  <!-- RICE & ROTI SECTION -->
+  <div class="section-title">Rice & Roti</div>
+  <div class="item-grid">
+
+    <div class="item-card">
+      <div class="no-img-strip"></div>
+      <div class="item-body">
+        <div class="item-name">Roti (1 piece)</div>
+        <div class="item-footer">
+          <div class="item-price">₹7</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('roti',-1)">−</button>
+            <span class="qty-val" id="qty-roti">0</span>
+            <button class="qty-btn" onclick="changeQty('roti',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="no-img-strip"></div>
+      <div class="item-body">
+        <div class="item-name">Paratha (1 piece)</div>
+        <div class="item-footer">
+          <div class="item-price">₹12</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('paratha',-1)">−</button>
+            <span class="qty-val" id="qty-paratha">0</span>
+            <button class="qty-btn" onclick="changeQty('paratha',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <div class="no-img-strip"></div>
+      <div class="item-body">
+        <div class="item-name">Steamed Rice</div>
+        <div class="item-footer">
+          <div class="item-price">₹30</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('srice',-1)">−</button>
+            <span class="qty-val" id="qty-srice">0</span>
+            <button class="qty-btn" onclick="changeQty('srice',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/jeera-rice.jpg" alt="Jeera Rice"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍚</div>
+      <div class="item-body">
+        <div class="item-name">Jeera Rice</div>
+        <div class="item-footer">
+          <div class="item-price">₹45</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('jeera',-1)">−</button>
+            <span class="qty-val" id="qty-jeera">0</span>
+            <button class="qty-btn" onclick="changeQty('jeera',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img class="item-img" src="images/basanti-pulao.jpg" alt="Basanti Pulao"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">🍚</div>
+      <div class="item-body">
+        <div class="item-name">Basanti Pulao</div>
+        <div class="item-footer">
+          <div class="item-price">₹75</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('pulao',-1)">−</button>
+            <span class="qty-val" id="qty-pulao">0</span>
+            <button class="qty-btn" onclick="changeQty('pulao',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /rice grid -->
+
+  <div class="footer">
+    Place order on call or WhatsApp &nbsp;·&nbsp;
+    <a href="tel:9966025825">9966025825</a> &nbsp;/&nbsp;
+    <a href="tel:9051889094">9051889094</a>
+  </div>
+
+</div><!-- /container -->
+
+<!-- Cart Bar -->
+<div class="cart-bar" id="cart-bar" onclick="openCheckout()" role="button" aria-label="View cart">
+  <div class="cart-bar-left">
+    <span class="cart-count" id="cart-count">0 items</span>
+    <span class="cart-amount" id="cart-amount">₹0</span>
+  </div>
+  <span class="cart-cta">View order →</span>
+</div>
+
+<!-- Checkout Overlay -->
+<div class="checkout-overlay" id="checkout-overlay" onclick="overlayClick(event)">
+  <div class="checkout-sheet" role="dialog" aria-modal="true" aria-label="Your order">
+    <div class="sheet-header">
+      <span class="sheet-title">Your order</span>
+      <button class="close-btn" onclick="closeCheckout()" aria-label="Close">✕</button>
+    </div>
+
+    <div id="order-lines"></div>
+
+    <div class="form-group">
+      <label class="form-label" for="cust-name">Your name *</label>
+      <input class="form-input" id="cust-name" type="text" placeholder="E.g. Rahul Sharma" autocomplete="name">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="cust-loc">Delivery location / address *</label>
+      <input class="form-input" id="cust-loc" type="text" placeholder="E.g. 3rd floor, ABC Office, Salt Lake" autocomplete="street-address">
+    </div>
+
+    <button class="wa-btn" onclick="sendToWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Place order via WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+  const WA_NUMBER = "919966025825";
+
+  const allItems = {
+    vthali:     { name: "Vegetarian Thali",   price: 102 },
+    cthali_mini:{ name: "Chicken Thali (Mini)",price: 95 },
+    cthali:     { name: "Chicken Thali",       price: 116 },
+    ethali:     { name: "Egg Thali",           price: 84  },
+    sthali:     { name: "Special Thali",       price: 75  },
+    aloor:      { name: "Aloor Dum",           price: 60  },
+    etadka:     { name: "Egg Tadka",           price: 55  },
+    ctadka:     { name: "Chicken Tadka",       price: 75  },
+    paneer:     { name: "Shahi Paneer",        price: 78  },
+    ebhuna:     { name: "Egg Bhuna",           price: 65  },
+    ckosha:     { name: "Chicken Kosha",       price: 90  },
+    roti:       { name: "Roti (1 piece)",      price: 7   },
+    paratha:    { name: "Paratha (1 piece)",   price: 12  },
+    srice:      { name: "Steamed Rice",        price: 30  },
+    jeera:      { name: "Jeera Rice",          price: 45  },
+    pulao:      { name: "Basanti Pulao",       price: 75  },
+  };
+
+  const cart = {};
+
+  function changeQty(id, delta) {
+    cart[id] = Math.max(0, (cart[id] || 0) + delta);
+    if (cart[id] === 0) delete cart[id];
+    const el = document.getElementById("qty-" + id);
+    if (el) el.textContent = cart[id] || 0;
+    updateCartBar();
+  }
+
+  function updateCartBar() {
+    const ids = Object.keys(cart);
+    const count = ids.reduce((s, k) => s + cart[k], 0);
+    const total = ids.reduce((s, k) => s + allItems[k].price * cart[k], 0);
+    document.getElementById("cart-count").textContent = count + (count === 1 ? " item" : " items");
+    document.getElementById("cart-amount").textContent = "₹" + total;
+  }
+
+  function openCheckout() {
+    renderOrderLines();
+    document.getElementById("checkout-overlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeCheckout() {
+    document.getElementById("checkout-overlay").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  function overlayClick(e) {
+    if (e.target === document.getElementById("checkout-overlay")) closeCheckout();
+  }
+
+  function renderOrderLines() {
+    const ids = Object.keys(cart);
+    const div = document.getElementById("order-lines");
+    if (!ids.length) {
+      div.innerHTML = '<p class="empty-msg">No items added yet. Close and add items first.</p>';
+      return;
+    }
+    let html = "";
+    ids.forEach(k => {
+      html += `<div class="order-line">
+        <span>${allItems[k].name} × ${cart[k]}</span>
+        <span>₹${allItems[k].price * cart[k]}</span>
+      </div>`;
+    });
+    const total = ids.reduce((s, k) => s + allItems[k].price * cart[k], 0);
+    html += `<div class="order-total"><span>Total</span><span>₹${total}</span></div>`;
+    div.innerHTML = html;
+  }
+
+  function sendToWhatsApp() {
+    const ids = Object.keys(cart);
+    if (!ids.length) { alert("Please add items to your order first."); return; }
+    const name = document.getElementById("cust-name").value.trim();
+    const loc  = document.getElementById("cust-loc").value.trim();
+    if (!name) { alert("Please enter your name."); return; }
+    if (!loc)  { alert("Please enter your delivery location."); return; }
+
+    let msg = "🍱 *New Order — The Lunchbox*\n\n";
+    msg += `*Name:* ${name}\n*Location:* ${loc}\n\n*Items:*\n`;
+    ids.forEach(k => {
+      msg += `• ${allItems[k].name} × ${cart[k]} — ₹${allItems[k].price * cart[k]}\n`;
+    });
+    const total = ids.reduce((s, k) => s + allItems[k].price * cart[k], 0);
+    msg += `\n*Total: ₹${total}*`;
+
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+  }
+
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeCheckout(); });
+</script>
+
+</body>
+</html>

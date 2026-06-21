@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Lunchbox — Corporate Meals</title>
   <meta name="description" content="A specially curated lunch menu for corporate folks. Order via WhatsApp.">
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- iOS home screen support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lunchbox">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+
+  <!-- Theme color (Android chrome bar) -->
+  <meta name="theme-color" content="#0F6E56">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -116,7 +129,7 @@
       </div>
     </div>
 
-  </div><!-- /thali grid -->
+  </div>
 
   <!-- MAIN COURSE SECTION -->
   <div class="section-title">Main Course</div>
@@ -224,7 +237,7 @@
       </div>
     </div>
 
-  </div><!-- /main grid -->
+  </div>
 
   <!-- RICE & ROTI SECTION -->
   <div class="section-title">Rice & Roti</div>
@@ -309,7 +322,7 @@
       </div>
     </div>
 
-  </div><!-- /rice grid -->
+  </div>
 
   <div class="footer">
     Place order on call or WhatsApp &nbsp;·&nbsp;
@@ -360,22 +373,22 @@
   const WA_NUMBER = "919966025825";
 
   const allItems = {
-    vthali:     { name: "Vegetarian Thali",   price: 102 },
-    cthali_mini:{ name: "Chicken Thali (Mini)",price: 95 },
-    cthali:     { name: "Chicken Thali",       price: 116 },
-    ethali:     { name: "Egg Thali",           price: 84  },
-    sthali:     { name: "Special Thali",       price: 75  },
-    aloor:      { name: "Aloor Dum",           price: 60  },
-    etadka:     { name: "Egg Tadka",           price: 55  },
-    ctadka:     { name: "Chicken Tadka",       price: 75  },
-    paneer:     { name: "Shahi Paneer",        price: 78  },
-    ebhuna:     { name: "Egg Bhuna",           price: 65  },
-    ckosha:     { name: "Chicken Kosha",       price: 90  },
-    roti:       { name: "Roti (1 piece)",      price: 7   },
-    paratha:    { name: "Paratha (1 piece)",   price: 12  },
-    srice:      { name: "Steamed Rice",        price: 30  },
-    jeera:      { name: "Jeera Rice",          price: 45  },
-    pulao:      { name: "Basanti Pulao",       price: 75  },
+    vthali:      { name: "Vegetarian Thali",    price: 102 },
+    cthali_mini: { name: "Chicken Thali (Mini)", price: 95  },
+    cthali:      { name: "Chicken Thali",        price: 116 },
+    ethali:      { name: "Egg Thali",            price: 84  },
+    sthali:      { name: "Special Thali",        price: 75  },
+    aloor:       { name: "Aloor Dum",            price: 60  },
+    etadka:      { name: "Egg Tadka",            price: 55  },
+    ctadka:      { name: "Chicken Tadka",        price: 75  },
+    paneer:      { name: "Shahi Paneer",         price: 78  },
+    ebhuna:      { name: "Egg Bhuna",            price: 65  },
+    ckosha:      { name: "Chicken Kosha",        price: 90  },
+    roti:        { name: "Roti (1 piece)",       price: 7   },
+    paratha:     { name: "Paratha (1 piece)",    price: 12  },
+    srice:       { name: "Steamed Rice",         price: 30  },
+    jeera:       { name: "Jeera Rice",           price: 45  },
+    pulao:       { name: "Basanti Pulao",        price: 75  },
   };
 
   const cart = {};
@@ -446,8 +459,7 @@
     const total = ids.reduce((s, k) => s + allItems[k].price * cart[k], 0);
     msg += `\n*Total: ₹${total}*`;
 
-    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   }
 
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeCheckout(); });

@@ -152,12 +152,14 @@
       </div>
     </div>
 
-    <div class="item-card">
+    <div class="item-card preorder-card">
+      <div class="preorder-badge">🕐 Next Day Only</div>
       <img class="item-img" src="images/egg-tadka.jpg" alt="Egg Tadka"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="item-img-placeholder" style="display:none">🥚</div>
       <div class="item-body">
         <div class="item-name">Egg Tadka</div>
+        <div class="item-desc preorder-note">Needs overnight prep · delivered tomorrow</div>
         <div class="item-footer">
           <div class="item-price">₹55</div>
           <div class="qty-ctrl">
@@ -169,12 +171,14 @@
       </div>
     </div>
 
-    <div class="item-card">
+    <div class="item-card preorder-card">
+      <div class="preorder-badge">🕐 Next Day Only</div>
       <img class="item-img" src="images/chicken-tadka.jpg" alt="Chicken Tadka"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="item-img-placeholder" style="display:none">🍗</div>
       <div class="item-body">
         <div class="item-name">Chicken Tadka</div>
+        <div class="item-desc preorder-note">Needs overnight prep · delivered tomorrow</div>
         <div class="item-footer">
           <div class="item-price">₹75</div>
           <div class="qty-ctrl">
@@ -372,8 +376,10 @@
 <script>
   const WA_NUMBER = "919966025825";
 
+  const PREORDER_ITEMS = new Set(["etadka", "ctadka"]);
+
   const allItems = {
-    vthali:      { name: "Vegetarian Thali",    price: 102 },
+    vthali:      { name: "Vegetarian Thali",     price: 102 },
     cthali_mini: { name: "Chicken Thali (Mini)", price: 95  },
     cthali:      { name: "Chicken Thali",        price: 116 },
     ethali:      { name: "Egg Thali",            price: 84  },
@@ -390,6 +396,12 @@
     jeera:       { name: "Jeera Rice",           price: 45  },
     pulao:       { name: "Basanti Pulao",        price: 75  },
   };
+
+  function getTomorrowDate() {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "short" });
+  }
 
   const cart = {};
 
@@ -431,14 +443,27 @@
       div.innerHTML = '<p class="empty-msg">No items added yet. Close and add items first.</p>';
       return;
     }
-    let html = "";
-    ids.forEach(k => {
-      html += `<div class="order-line">
-        <span>${allItems[k].name} × ${cart[k]}</span>
-        <span>₹${allItems[k].price * cart[k]}</span>
-      </div>`;
-    });
+
+    const todayIds    = ids.filter(k => !PREORDER_ITEMS.has(k));
+    const tomorrowIds = ids.filter(k =>  PREORDER_ITEMS.has(k));
     const total = ids.reduce((s, k) => s + allItems[k].price * cart[k], 0);
+
+    let html = "";
+
+    if (todayIds.length) {
+      html += `<div class="delivery-heading">📦 Today's delivery</div>`;
+      todayIds.forEach(k => {
+        html += `<div class="order-line"><span>${allItems[k].name} × ${cart[k]}</span><span>₹${allItems[k].price * cart[k]}</span></div>`;
+      });
+    }
+
+    if (tomorrowIds.length) {
+      html += `<div class="delivery-heading preorder-heading">🕐 Tomorrow's delivery <span>${getTomorrowDate()}</span></div>`;
+      tomorrowIds.forEach(k => {
+        html += `<div class="order-line preorder-line"><span>${allItems[k].name} × ${cart[k]}</span><span>₹${allItems[k].price * cart[k]}</span></div>`;
+      });
+    }
+
     html += `<div class="order-total"><span>Total</span><span>₹${total}</span></div>`;
     div.innerHTML = html;
   }
@@ -451,13 +476,30 @@
     if (!name) { alert("Please enter your name."); return; }
     if (!loc)  { alert("Please enter your delivery location."); return; }
 
-    let msg = "🍱 *New Order — The Lunchbox*\n\n";
-    msg += `*Name:* ${name}\n*Location:* ${loc}\n\n*Items:*\n`;
-    ids.forEach(k => {
-      msg += `• ${allItems[k].name} × ${cart[k]} — ₹${allItems[k].price * cart[k]}\n`;
-    });
+    const todayIds    = ids.filter(k => !PREORDER_ITEMS.has(k));
+    const tomorrowIds = ids.filter(k =>  PREORDER_ITEMS.has(k));
     const total = ids.reduce((s, k) => s + allItems[k].price * cart[k], 0);
-    msg += `\n*Total: ₹${total}*`;
+
+    let msg = "🍱 *New Order — The Lunchbox*\n\n";
+    msg += `*Name:* ${name}\n*Location:* ${loc}\n\n`;
+
+    if (todayIds.length) {
+      msg += `📦 *Today's delivery:*\n`;
+      todayIds.forEach(k => {
+        msg += `• ${allItems[k].name} × ${cart[k]} — ₹${allItems[k].price * cart[k]}\n`;
+      });
+      msg += "\n";
+    }
+
+    if (tomorrowIds.length) {
+      msg += `🕐 *Tomorrow's delivery (${getTomorrowDate()}):*\n`;
+      tomorrowIds.forEach(k => {
+        msg += `• ${allItems[k].name} × ${cart[k]} — ₹${allItems[k].price * cart[k]}\n`;
+      });
+      msg += "\n";
+    }
+
+    msg += `*Total: ₹${total}*`;
 
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   }

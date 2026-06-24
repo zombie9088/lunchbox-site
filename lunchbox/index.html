@@ -403,7 +403,23 @@
     return d.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "short" });
   }
 
-  const cart = {};
+  let cart = {};
+
+  function saveCart() {
+    localStorage.setItem("lunchbox_cart", JSON.stringify(cart));
+  }
+
+  function loadCart() {
+    const saved = localStorage.getItem("lunchbox_cart");
+    if (saved) {
+      cart = JSON.parse(saved);
+      Object.keys(cart).forEach(id => {
+        const el = document.getElementById("qty-" + id);
+        if (el) el.textContent = cart[id];
+      });
+      updateCartBar();
+    }
+  }
 
   function changeQty(id, delta) {
     cart[id] = Math.max(0, (cart[id] || 0) + delta);
@@ -411,6 +427,7 @@
     const el = document.getElementById("qty-" + id);
     if (el) el.textContent = cart[id] || 0;
     updateCartBar();
+    saveCart();
   }
 
   function updateCartBar() {
@@ -505,6 +522,25 @@
   }
 
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeCheckout(); });
+
+  // Load cart and customer details on page load
+  window.addEventListener("load", () => {
+    loadCart();
+    const savedName = localStorage.getItem("lunchbox_name");
+    const savedLoc = localStorage.getItem("lunchbox_location");
+    if (savedName) document.getElementById("cust-name").value = savedName;
+    if (savedLoc) document.getElementById("cust-loc").value = savedLoc;
+  });
+
+  // Save customer details on checkout
+  const originalSendToWhatsApp = sendToWhatsApp;
+  window.sendToWhatsApp = function() {
+    const name = document.getElementById("cust-name").value.trim();
+    const loc = document.getElementById("cust-loc").value.trim();
+    if (name) localStorage.setItem("lunchbox_name", name);
+    if (loc) localStorage.setItem("lunchbox_location", loc);
+    originalSendToWhatsApp();
+  };
 </script>
 
 </body>
